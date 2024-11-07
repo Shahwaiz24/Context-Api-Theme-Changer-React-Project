@@ -1,13 +1,22 @@
-import React, { useContext } from "react"
-import { ThemeContext, ThemeProvider } from "./context/Theme-Context"
+import React, { useContext, useEffect, useState } from "react"
+import {Provider } from "./context/Theme-Context"
 import ThemeBtn from "./components/Theme-btn"
 import CardComponent from "./components/Card-component"
 function App() {
-  const ThemeContext = useContext(ThemeContext)
-  console.log("Theme Context: ", ThemeContext)
+  const [themeMode, setDark] = useState(
+    JSON.parse(localStorage.getItem("dark")) || "light"
+  );
+  const setDarktheme = () => {
+    setDark("dark")
+    console.log("ThemeMode : ", themeMode);
+  }
+  useEffect(() => {
+    document.querySelector('html').classList.remove('light','dark')
+    document.querySelector('html').classList.add(themeMode)
 
+  },[themeMode]);
   return (
-    <ThemeProvider>
+    <Provider value={{themeMode,setDark}}>
       <div className="flex flex-wrap min-h-screen items-center">
         <div className="w-full">
           <div className="w-full max-w-sm mx-auto flex justify-end mb-4">
@@ -15,12 +24,13 @@ function App() {
           </div>
 
           <div className="w-full max-w-sm mx-auto">
-            <CardComponent/>
+            <CardComponent />
 
           </div>
         </div>
       </div>
-    </ThemeProvider>
+    </Provider>
+
     
   )
 }
