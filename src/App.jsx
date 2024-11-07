@@ -4,12 +4,8 @@ import ThemeBtn from "./components/Theme-btn"
 import CardComponent from "./components/Card-component"
 function App() {
   const [themeMode, setDark] = useState(
-    JSON.parse(localStorage.getItem("dark")) || "light"
+    localStorage.getItem("thememode")
   );
-  const setDarktheme = () => {
-    setDark("dark")
-    console.log("ThemeMode : ", themeMode);
-  }
   useEffect(() => {
     document.querySelector('html').classList.remove('light','dark')
     document.querySelector('html').classList.add(themeMode)

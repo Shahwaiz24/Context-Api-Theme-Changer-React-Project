@@ -11,14 +11,14 @@ export default function ThemeBtn(
     const changeBtn = (e) => {
         const darkModeStatus = e.currentTarget.checked;
         if (darkModeStatus) {
-            localStorage.setItem("thememode", "dark")
-            setDark(JSON.parse(localStorage.getItem("thememode")));
-
+            localStorage.setItem("thememode", "dark");
+            setDark(localStorage.getItem("thememode"));  // Removed JSON.parse
         } else {
-            localStorage.setItem("thememode", "light")
-            setDark(JSON.parse(localStorage.getItem("thememode")));
+            localStorage.setItem("thememode", "light");
+            setDark(localStorage.getItem("thememode"));  // Removed JSON.parse
         }
     }
+    
 
     return (
         <label className="relative inline-flex items-center cursor-pointer">
